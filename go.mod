@@ -1,6 +1,6 @@
 module github.com/fossteams/teams-cli
 
-go 1.26.1
+go 1.26.4
 
 require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
