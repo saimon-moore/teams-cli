@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/signal"
 	"path/filepath"
+	"strings"
 	"syscall"
 
 	"github.com/rivo/tview"
@@ -60,15 +61,42 @@ func main() {
 		"debug_enabled": options.LogLevel == logrus.DebugLevel,
 		"process_id":    os.Getpid(),
 	}).Info("starting teams-cli")
+
+	rootCtx, stopSignals := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stopSignals()
+	if options.CommandMode != commandModeTUI {
+		if commandUsesTeamsBootstrap(options.CommandMode) {
+			if err := applyTokenDirToEnv(options.TokenDir); err != nil {
+				logger.WithError(err).WithField("token_dir", options.TokenDir).Error("token setup failed")
+				fmt.Fprintf(os.Stderr, "token setup failed: %v\nSee log: %s\n", err, logSetup.Path)
+				os.Exit(1)
+			}
+			if err := validateRuntimeTokens(options.TokenDir); err != nil {
+				logger.WithError(err).WithField("token_dir", options.TokenDir).Error("runtime token validation failed")
+				fmt.Fprintf(os.Stderr, "token validation failed: %v\nSee log: %s\n", err, logSetup.Path)
+				os.Exit(1)
+			}
+		}
+		if err := runCommand(rootCtx, os.Stdout, options, logger); err != nil {
+			logger.WithError(err).WithField("command_mode", options.CommandMode).Error("command failed")
+			fmt.Fprintf(os.Stderr, "%s: %v\nSee log: %s\n", strings.ReplaceAll(string(options.CommandMode), "-", " "), err, logSetup.Path)
+			os.Exit(1)
+		}
+		return
+	}
+
 	if err := applyTokenDirToEnv(options.TokenDir); err != nil {
 		logger.WithError(err).WithField("token_dir", options.TokenDir).Error("token setup failed")
 		fmt.Fprintf(os.Stderr, "token setup failed: %v\nSee log: %s\n", err, logSetup.Path)
 		os.Exit(1)
 	}
+	if err := validateRuntimeTokens(options.TokenDir); err != nil {
+		logger.WithError(err).WithField("token_dir", options.TokenDir).Error("runtime token validation failed")
+		fmt.Fprintf(os.Stderr, "token validation failed: %v\nSee log: %s\n", err, logSetup.Path)
+		os.Exit(1)
+	}
 
 	app := tview.NewApplication()
-	rootCtx, stopSignals := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
-	defer stopSignals()
 
 	state := AppState{
 		app:                          app,

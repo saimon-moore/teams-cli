@@ -4,7 +4,7 @@ import (
 	"strings"
 	"sync/atomic"
 
-	teams_api "github.com/fossteams/teams-api"
+	teams_api "github.com/saimon-moore/teams-api"
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 	"github.com/sirupsen/logrus"

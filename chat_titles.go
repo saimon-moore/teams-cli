@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/fossteams/teams-api/pkg/csa"
+	"github.com/saimon-moore/teams-api/pkg/csa"
 	"golang.org/x/net/html"
 )
 

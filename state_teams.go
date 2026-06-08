@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	teams_api "github.com/fossteams/teams-api"
-	"github.com/fossteams/teams-api/pkg/csa"
-	"github.com/fossteams/teams-api/pkg/models"
+	teams_api "github.com/saimon-moore/teams-api"
+	"github.com/saimon-moore/teams-api/pkg/csa"
+	"github.com/saimon-moore/teams-api/pkg/models"
 	"sort"
 	"strings"
 	"time"

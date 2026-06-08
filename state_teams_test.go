@@ -1,8 +1,10 @@
 package main
 
 import (
-	api "github.com/fossteams/teams-api/pkg"
-	"github.com/fossteams/teams-api/pkg/csa"
+	"bytes"
+	api "github.com/saimon-moore/teams-api/pkg"
+	"github.com/saimon-moore/teams-api/pkg/csa"
+	"strings"
 	"testing"
 	"time"
 )
@@ -94,6 +96,53 @@ func TestSortChatsPrefersRecentActivity(t *testing.T) {
 
 	if chats[0].Id != "newer" {
 		t.Fatalf("expected most recent chat first, got %q", chats[0].Id)
+	}
+}
+
+func TestFormatTeamsTable(t *testing.T) {
+	teams := []csa.Team{
+		{
+			Id:          "team-123",
+			DisplayName: "Engineering",
+			IsFavorite:  true,
+			IsFollowed:  true,
+			Channels: []csa.Channel{
+				{Id: "general"},
+				{Id: "random"},
+			},
+		},
+		{
+			Id:          "team-999",
+			DisplayName: "Archive",
+			IsArchived:  true,
+			IsDeleted:   true,
+		},
+	}
+
+	var out bytes.Buffer
+	if err := formatTeamsTable(&out, teams); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	text := out.String()
+	for _, needle := range []string{
+		"NAME",
+		"ID",
+		"FAVORITE",
+		"FOLLOWED",
+		"ARCHIVED",
+		"DELETED",
+		"CHANNELS",
+		"Engineering",
+		"team-123",
+		"true",
+		"2",
+		"Archive",
+		"team-999",
+	} {
+		if !strings.Contains(text, needle) {
+			t.Fatalf("expected output to contain %q, got:\n%s", needle, text)
+		}
 	}
 }
 
