@@ -1,8 +1,8 @@
 package main
 
 import (
-	api "github.com/fossteams/teams-api/pkg"
-	"github.com/fossteams/teams-api/pkg/csa"
+	api "github.com/saimon-moore/teams-api/pkg"
+	"github.com/saimon-moore/teams-api/pkg/csa"
 	"github.com/rivo/tview"
 	"strings"
 	"testing"

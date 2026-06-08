@@ -15,9 +15,9 @@ import (
 	"unsafe"
 
 	"github.com/dgrijalva/jwt-go"
-	teams_api "github.com/fossteams/teams-api"
-	api "github.com/fossteams/teams-api/pkg"
-	"github.com/fossteams/teams-api/pkg/csa"
+	teams_api "github.com/saimon-moore/teams-api"
+	api "github.com/saimon-moore/teams-api/pkg"
+	"github.com/saimon-moore/teams-api/pkg/csa"
 )
 
 type roundTripperFunc func(*http.Request) (*http.Response, error)

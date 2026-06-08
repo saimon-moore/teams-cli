@@ -16,10 +16,11 @@ const (
 	tokenTypeTeams      = "teams"
 	tokenTypeSkype      = "skype"
 	tokenTypeChatSvcAgg = "chatsvcagg"
+	tokenTypeGraph      = "graph"
 )
 
 var runtimeTokenTypes = []string{tokenTypeSkype, tokenTypeChatSvcAgg}
-var optionalTokenTypes = []string{tokenTypeTeams}
+var optionalTokenTypes = []string{tokenTypeTeams, tokenTypeGraph}
 
 type resolvedToken struct {
 	TokenType string
@@ -106,6 +107,36 @@ func applyTokenDirToEnv(tokenDir string) error {
 	}
 
 	return nil
+}
+
+func validateRuntimeTokens(tokenDir string) error {
+	for _, tokenType := range runtimeTokenTypes {
+		token, meta, err := resolveAndValidateToken(tokenType, tokenDir)
+		if err != nil {
+			return err
+		}
+		_ = token
+		_ = meta
+	}
+
+	return nil
+}
+
+func resolveAndValidateToken(tokenType, tokenDir string) (resolvedToken, jwtMetadata, error) {
+	token, err := resolveToken(tokenType, tokenDir)
+	if err != nil {
+		return resolvedToken{}, jwtMetadata{}, err
+	}
+
+	meta, err := parseJWTMetadata(token.Value)
+	if err != nil {
+		return resolvedToken{}, jwtMetadata{}, fmt.Errorf("invalid %s token (%s): %v", tokenType, token.Location, err)
+	}
+	if meta.HasExpiry && time.Now().After(meta.ExpiresAt) {
+		return resolvedToken{}, jwtMetadata{}, fmt.Errorf("%s token expired at %s (%s)", tokenType, meta.ExpiresAt.Format(time.RFC3339), token.Location)
+	}
+
+	return token, meta, nil
 }
 
 type jwtMetadata struct {
