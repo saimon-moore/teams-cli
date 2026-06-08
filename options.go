@@ -31,30 +31,30 @@ const (
 )
 
 type CommandOptions struct {
-	TargetID     string
-	CalendarID   string
-	EventID      string
-	OutputJSON   bool
+	TargetID            string
+	CalendarID          string
+	EventID             string
+	OutputJSON          bool
 	IncludeNameMentions bool
-	Profile      string
-	TeamIDs      []string
-	ChannelIDs   []string
-	ChatIDs      []string
-	Since        string
-	Start        string
-	End          string
-	ResultLimit  int
-	Query        string
-	Subject      string
-	Timezone     string
-	Location     string
-	Body         string
-	AllDay       bool
-	Format       string
-	OutputPath   string
-	PollInterval time.Duration
-	StateFile    string
-	ConfigPath   string
+	Profile             string
+	TeamIDs             []string
+	ChannelIDs          []string
+	ChatIDs             []string
+	Since               string
+	Start               string
+	End                 string
+	ResultLimit         int
+	Query               string
+	Subject             string
+	Timezone            string
+	Location            string
+	Body                string
+	AllDay              bool
+	Format              string
+	OutputPath          string
+	PollInterval        time.Duration
+	StateFile           string
+	ConfigPath          string
 }
 
 type AppOptions struct {

@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/saimon-moore/teams-api/pkg/csa"
 	"github.com/rivo/tview"
+	"github.com/saimon-moore/teams-api/pkg/csa"
 )
 
 func conversationPaneTitle(target ConversationTarget, syncedAt time.Time, status string) string {

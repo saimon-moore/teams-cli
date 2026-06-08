@@ -73,9 +73,9 @@ func TestCommandServiceFetchMessageHistoryFollowsBackwardLinkUntilSince(t *testi
 
 func TestNormalizeConversationMessagesResolvesThreadsAndMentions(t *testing.T) {
 	conversation := conversationDescriptor{
-		Target: ConversationTarget{ID: "19:channel", Title: "Engineering / General"},
-		Type:   conversationTypeChannel,
-		TeamID: "team-1",
+		Target:    ConversationTarget{ID: "19:channel", Title: "Engineering / General"},
+		Type:      conversationTypeChannel,
+		TeamID:    "team-1",
 		ChannelID: "19:channel",
 	}
 	me := &models.User{
@@ -322,7 +322,7 @@ func TestCollectMentionHitsCanIncludeNameMentions(t *testing.T) {
 
 	hits, err := collectMentionHits(context.Background(), env, AppOptions{
 		Command: CommandOptions{
-			ResultLimit:          10,
+			ResultLimit:         10,
 			IncludeNameMentions: true,
 		},
 	})

@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/rivo/tview"
 	api "github.com/saimon-moore/teams-api/pkg"
 	"github.com/saimon-moore/teams-api/pkg/csa"
-	"github.com/rivo/tview"
 	"strings"
 	"testing"
 	"time"

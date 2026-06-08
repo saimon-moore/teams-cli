@@ -6,12 +6,10 @@ require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gdamore/tcell/v2 v2.5.1
 	github.com/rivo/tview v0.0.0-20220307222120-9994674d60a8
-	github.com/saimon-moore/teams-api v0.0.0
+	github.com/saimon-moore/teams-api v0.0.0-20260608181720-a30882a153a3
 	github.com/sirupsen/logrus v1.8.1
 	golang.org/x/net v0.38.0
 )
-
-replace github.com/saimon-moore/teams-api => ../teams-api
 
 require (
 	github.com/gdamore/encoding v1.0.0 // indirect

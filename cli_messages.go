@@ -29,7 +29,7 @@ type conversationDescriptor struct {
 	TeamID       string
 	TeamName     string
 	ChannelID    string
-	ChannelName string
+	ChannelName  string
 	ChatID       string
 	LastActivity time.Time
 }
@@ -342,7 +342,7 @@ func buildConversationDescriptors(state *TeamsState) []conversationDescriptor {
 				TeamID:       team.Id,
 				TeamName:     team.DisplayName,
 				ChannelID:    channel.Id,
-				ChannelName: channel.DisplayName,
+				ChannelName:  channel.DisplayName,
 				LastActivity: channelActivityTime(channel),
 			})
 		}

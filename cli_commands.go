@@ -22,26 +22,26 @@ import (
 )
 
 type commandEnvironment struct {
-	service     commandService
-	teamsState  TeamsState
-	config      CLIConfig
-	selectors   CommandSelectors
+	service       commandService
+	teamsState    TeamsState
+	config        CLIConfig
+	selectors     CommandSelectors
 	conversations []conversationDescriptor
 }
 
 type mentionHit struct {
-	Timestamp           time.Time `json:"timestamp"`
-	Sender              string    `json:"sender"`
-	ConversationType    string    `json:"conversation_type"`
-	ConversationTitle   string    `json:"conversation_title"`
-	TeamID              string    `json:"team_id,omitempty"`
-	ChannelID           string    `json:"channel_id,omitempty"`
-	ChatID              string    `json:"chat_id,omitempty"`
-	MessageID           string    `json:"message_id"`
-	ThreadRootSequenceID int64    `json:"thread_root_sequence_id"`
-	MatchType           string    `json:"match_type"`
-	MessageText         string    `json:"message_text"`
-	Preview             string    `json:"preview"`
+	Timestamp            time.Time `json:"timestamp"`
+	Sender               string    `json:"sender"`
+	ConversationType     string    `json:"conversation_type"`
+	ConversationTitle    string    `json:"conversation_title"`
+	TeamID               string    `json:"team_id,omitempty"`
+	ChannelID            string    `json:"channel_id,omitempty"`
+	ChatID               string    `json:"chat_id,omitempty"`
+	MessageID            string    `json:"message_id"`
+	ThreadRootSequenceID int64     `json:"thread_root_sequence_id"`
+	MatchType            string    `json:"match_type"`
+	MessageText          string    `json:"message_text"`
+	Preview              string    `json:"preview"`
 }
 
 type searchHit struct {

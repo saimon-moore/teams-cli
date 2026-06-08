@@ -15,8 +15,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/saimon-moore/teams-api/pkg/csa"
 	"github.com/rivo/tview"
+	"github.com/saimon-moore/teams-api/pkg/csa"
 	"github.com/sirupsen/logrus"
 )
 
