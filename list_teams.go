@@ -1,12 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"strconv"
 	"text/tabwriter"
 
-	teams_api "github.com/saimon-moore/teams-api"
 	"github.com/saimon-moore/teams-api/pkg/csa"
 )
 
@@ -30,19 +28,4 @@ func formatTeamsTable(out io.Writer, teams []csa.Team) error {
 	}
 
 	return writer.Flush()
-}
-
-func runListTeams(out io.Writer) error {
-	client, err := teams_api.New()
-	if err != nil {
-		return fmt.Errorf("unable to initialize teams client: %v", err)
-	}
-
-	state := TeamsState{teamsClient: client}
-	data, err := state.fetchConversationData()
-	if err != nil {
-		return err
-	}
-
-	return formatTeamsTable(out, data.conversations.Teams)
 }
