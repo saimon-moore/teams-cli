@@ -8,6 +8,8 @@ Upstream `fossteams/teams-cli` has been archived and is read-only. This fork is 
 
 This project is still WIP and will be updated with more features. The goal is to have a CLI / TUI replacement for the Microsoft Teams desktop client. Today the client is primarily read-only (browsing conversations and reading recent messages).
 
+Release automation is driven from the maintained release branches in GitHub Actions.
+
 ## Documentation
 
 **We have moved our comprehensive documentation to the Wiki.** 
