@@ -1,6 +1,6 @@
 # teams-cli
 
-A Command Line Interface (or TUI) to interact with Microsoft Teams that uses the [teams-api](https://github.com/fossteams/teams-api) Go package.
+A Command Line Interface (or TUI) to interact with Microsoft Teams that uses the [teams-api](https://github.com/saimon-moore/teams-api) Go package.
 
 ## Status
 
@@ -22,7 +22,7 @@ Please browse the [GitHub Wiki](https://github.com/vaishnavucv/teams-cli/wiki) f
 
 ### Requirements
 - [Golang](https://golang.org/) 1.26.1 or newer
-- Valid Teams JWT files generated with [teams-token](https://github.com/fossteams/teams-token)
+- Valid Teams JWT files generated with [teams-token](https://github.com/saimon-moore/teams-token)
 - A terminal with cursor-addressing support (e.g. Terminal.app, iTerm2)
 
 ### Basic Usage
